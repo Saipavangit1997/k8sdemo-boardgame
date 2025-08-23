@@ -129,10 +129,11 @@ stages:
         filePath: ./create-acr-secret.sh
       env:
         SECRET_NAME: "acr-secret"
-        DOCKER_SERVER: $(DOCKER_SERVER)
-        DOCKER_USERNAME: $(DOCKER_USERNAME)
-        DOCKER_PASSWORD: $(DOCKER_PASSWORD)
-        DOCKER_EMAIL: $(DOCKER_EMAIL)
+        NAMESPACE: "default"
+        DOCKER_SERVER: "$(DOCKER_SERVER)"
+        DOCKER_USERNAME: "$(DOCKER_USERNAME)"
+        DOCKER_PASSWORD: "$(DOCKER_PASSWORD)"
+        DOCKER_EMAIL: "$(DOCKER_EMAIL)"
 
     - task: KubernetesManifest@1
       inputs:
@@ -145,4 +146,4 @@ stages:
         manifests: 'deployment-service.yml'
         imagePullSecrets: 'acr-secret'
         containers: |
-           $(ccontainerRegistry)/$(imageRepository):$(tag)
+           $(containerRegistry)/$(imageRepository):$(tag)
