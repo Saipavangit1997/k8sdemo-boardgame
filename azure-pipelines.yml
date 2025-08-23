@@ -49,7 +49,7 @@ stages:
         pollingTimeoutSec: '300'
     - task: Maven@4
       inputs:
-         azureSubscription: 'Azuredemoserviceconnection'
+         azureSubscription: 'azureserviceconnection'
          mavenPomFile: 'pom.xml'
          publishJUnitResults: true
          testResultsFiles: '**/surefire-reports/TEST-*.xml'
@@ -61,7 +61,7 @@ stages:
          sqMavenPluginVersionChoice: 'latest'
     - task: sonar-buildbreaker@8
       inputs:
-       SonarQube: 'SonarQubeAnalysis'
+       SonarQube: 'sonarqube-serviceconnection'
       displayName: "Sonaranalaysis fail or pass"
 
     - script: ls -al && pwd && rm -rf $(Build.SourcesDirectory)/.m2/settings.xml
@@ -93,7 +93,7 @@ stages:
           $tag
     - task: AzureCLI@2
       inputs:
-        azureSubscription: 'Azuredemoserviceconnection'
+        azureSubscription: 'azureserviceconnection'
         scriptType: 'bash'
         scriptLocation: 'inlineScript'
         inlineScript: |
@@ -104,7 +104,7 @@ stages:
       inputs:
         action: 'deploy'
         connectionType: 'azureResourceManager'
-        azureSubscriptionConnection: 'Azuredemoserviceconnection'
+        azureSubscriptionConnection: 'azureserviceconnection'
         azureResourceGroup: 'testing-eg'
         kubernetesCluster: 'k8sdemocluster'
         useClusterAdmin: true
