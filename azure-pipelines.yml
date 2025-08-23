@@ -38,9 +38,6 @@ stages:
           export PATH=$JAVA_HOME/bin:$PATH
           java -version
       displayName: "Use JDK 21"
-    - script: |
-       mvn -version
-      displayName: "Check Maven version"
     - task: SonarQubePrepare@7
       inputs:
        SonarQube: 'sonarqube-serviceconnection'
@@ -86,10 +83,21 @@ stages:
         TargetFolder: '$(Build.SourcesDirectory)/.m2'
       displayName: 'Copy to settings.xml file to .m2 folder'
 
-    - script: | 
-        mvn versions:set -DnewVersion=Dev-2.0.$(Build.BuildId)
-        mvn clean package deploy
-      displayName: 'Maven build and push to nexus'
+    - task: Maven@4
+      displayName: Build and Deploy to Nexus
+      inputs:
+        mavenPomFile: 'pom.xml'
+        goals: 'clean deploy'        
+        publishJUnitResults: true
+        testResultsFiles: '**/surefire-reports/TEST-*.xml'
+        javaHomeOption: 'JDKVersion'
+        jdkVersionOption: '21'
+        jdkArchitectureOption: 'x64'
+        mavenVersionOption: 'Default'
+        mavenAuthenticateFeed: false
+        effectivePomSkip: false
+        options: '--settings $(Build.SourcesDirectory)/.m2/settings.xml'
+
 
     - task: Docker@2
       displayName: Build and push an image to container registry
