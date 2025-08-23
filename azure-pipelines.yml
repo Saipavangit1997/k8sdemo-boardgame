@@ -44,6 +44,12 @@ stages:
       inputs:
        SonarQube: 'sonarqube-serviceconnection'
        scannerMode: 'other'
+       configMode: 'manual'
+       extraProperties: |
+        sonar.projectKey=BoardGame
+        sonar.projectName=BoardGame
+        sonar.sourceEncoding=UTF-8
+        sonar.exclusions=**/*.bin
     - task: SonarQubePublish@7
       inputs:
         pollingTimeoutSec: '300'
