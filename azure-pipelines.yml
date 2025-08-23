@@ -10,13 +10,14 @@ resources:
 
 variables:
   dockerRegistryServiceConnection: 'ACR-serviceconnection'
-  imageRepository: 'ksdemoboardgame'
+  imageRepository: 'k8sdemoboardgame'
   containerRegistry: 'k8sdemo123.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   tag: '$(Build.BuildId)'
   subscription-id : '5d8acfa7-16cd-4143-80a5-18125a834acb'
   rg-name: 'testing-eg'
   aks-cluster-name : 'k8sdemocluster'
+  group: acr-secrets 
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
@@ -57,6 +58,8 @@ stages:
          publishJUnitResults: true
          testResultsFiles: '**/surefire-reports/TEST-*.xml'
          javaHomeOption: 'JDKVersion'
+         jdkVersionOption: '21'         
+         jdkArchitectureOption: 'x64'
          mavenVersionOption: 'Default'
          mavenAuthenticateFeed: false
          effectivePomSkip: false
@@ -103,9 +106,22 @@ stages:
         scriptType: 'bash'
         scriptLocation: 'inlineScript'
         inlineScript: |
-          az account set --subscription $subscription-id
-          az aks get-credentials --resource-group $rg-name --name $aks-cluster-name
+          az account set --subscription $(subscription-id)
+          az aks get-credentials --resource-group $(rg-name0 --name $(aks-cluster-name)
       displayName: "Login to AKS cluster"
+
+    - task: Bash@3
+      displayName: "Run ACR secret creation script"
+      inputs:
+        filePath: ./create-acr-secret.sh
+      env:
+        SECRET_NAME: "acr-secret"
+        NAMESPACE: "default"
+        DOCKER_SERVER: $(DOCKER_SERVER)
+        DOCKER_USERNAME: $(DOCKER_USERNAME)
+        DOCKER_PASSWORD: $(DOCKER_PASSWORD)
+        DOCKER_EMAIL: $(DOCKER_EMAIL)
+
     - task: KubernetesManifest@1
       inputs:
         action: 'deploy'
@@ -115,4 +131,6 @@ stages:
         kubernetesCluster: 'k8sdemocluster'
         useClusterAdmin: true
         manifests: 'deployment-service.yml'
-        imagePullSecrets: 'testing'
+        imagePullSecrets: 'acr-secret'
+        containers: |
+           $(ccontainerRegistry)/$(imageRepository):$(tag)
