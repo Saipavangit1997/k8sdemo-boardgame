@@ -107,7 +107,7 @@ stages:
         dockerfile: $(dockerfilePath)
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
-          $tag
+          $(tag)
     - task: AzureCLI@2
       inputs:
         azureSubscription: 'azureserviceconnection'
@@ -115,7 +115,7 @@ stages:
         scriptLocation: 'inlineScript'
         inlineScript: |
           az account set --subscription $(subscription-id)
-          az aks get-credentials --resource-group $(rg-name0 --name $(aks-cluster-name)
+          az aks get-credentials --resource-group $(rg-name) --name $(aks-cluster-name)
       displayName: "Login to AKS cluster"
 
     - task: Bash@3
