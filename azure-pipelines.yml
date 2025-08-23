@@ -9,12 +9,14 @@ resources:
 - repo: self
 
 variables:
-  # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: '1526279c-203c-478e-8c23-ec958f89ea49'
   imageRepository: 'ksdemoboardgame'
   containerRegistry: 'k8sdemo123.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   tag: '$(Build.BuildId)'
+  subscription-id : '5d8acfa7-16cd-4143-80a5-18125a834acb'
+  rg-name: 'testing-eg'
+  aks-cluster-name : 'k8sdemocluster'
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
@@ -62,11 +64,24 @@ stages:
        SonarQube: 'SonarQubeAnalysis'
       displayName: "Sonaranalaysis fail or pass"
 
+    - script: ls -al && pwd && rm -rf $(Build.SourcesDirectory)/.m2/settings.xml
+      displayName: 'List Files & Current Working Directory'
+    - task: DownloadSecureFile@1
+      inputs:
+        secureFile: 'settings.xml'
+      displayName: 'Download setting.xml'
+    - task: CopyFiles@2
+      inputs:
+        SourceFolder: '$(Agent.TempDirectory)'
+        Contents: 'settings.xml'
+        TargetFolder: '$(Build.SourcesDirectory)/.m2'
+      displayName: 'Copy to settings.xml file to .m2 folder'
+
     - script: | 
         mvn versions:set -DnewVersion=Dev-2.0.$(Build.BuildId)
         mvn clean package deploy
       displayName: 'Maven build and push to nexus'
-      
+
     - task: Docker@2
       displayName: Build and push an image to container registry
       inputs:
@@ -74,7 +89,8 @@ stages:
         repository: $(imageRepository)
         dockerfile: $(dockerfilePath)
         containerRegistry: $(dockerRegistryServiceConnection)
-        tags: '$(Build.BuildNumber)'
+        tags: |
+          $tag
     - task: AzureCLI@2
       inputs:
         azureSubscription: 'Azuredemoserviceconnection'
