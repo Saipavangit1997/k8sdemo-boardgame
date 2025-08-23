@@ -38,6 +38,10 @@ stages:
     - script: |
        mvn -version
       displayName: "Check Maven version"
+    - task: SonarQubeAnalyze@7
+      inputs:
+        jdkversion: 'JAVA_HOME_21_X64'
+      displayName: "Run Sonarqube Analysis"
     - task: Docker@2
       displayName: Build and push an image to container registry
       inputs:
