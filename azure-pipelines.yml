@@ -115,8 +115,13 @@ stages:
         scriptLocation: 'inlineScript'
         inlineScript: |
           az account set --subscription $(subscription-id)
+          az aks update --resource-group $(rg-name) --name $(aks-cluster-name) --api-server-authorized-ip-ranges ""
           az aks get-credentials --resource-group $(rg-name) --name $(aks-cluster-name)
+          kubectl get nodes
       displayName: "Login to AKS cluster"
+
+    - script: chmod +x ./create-acr-secret.sh
+      displayName: "Make create-acr-secret.sh executable"
 
     - task: Bash@3
       displayName: "Run ACR secret creation script"
@@ -124,7 +129,6 @@ stages:
         filePath: ./create-acr-secret.sh
       env:
         SECRET_NAME: "acr-secret"
-        NAMESPACE: "default"
         DOCKER_SERVER: $(DOCKER_SERVER)
         DOCKER_USERNAME: $(DOCKER_USERNAME)
         DOCKER_PASSWORD: $(DOCKER_PASSWORD)
