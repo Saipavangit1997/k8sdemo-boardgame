@@ -42,7 +42,7 @@ stages:
       displayName: "Check Maven version"
     - task: SonarQubePrepare@7
       inputs:
-       SonarQube: 'SonarQubeAnalysis'
+       SonarQube: 'sonarqube-serviceconnection'
        scannerMode: 'other'
     - task: SonarQubePublish@7
       inputs:
