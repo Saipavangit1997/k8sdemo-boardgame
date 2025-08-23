@@ -57,7 +57,16 @@ stages:
          effectivePomSkip: false
          sonarQubeRunAnalysis: true
          sqMavenPluginVersionChoice: 'latest'
+    - task: sonar-buildbreaker@8
+      inputs:
+       SonarQube: 'SonarQubeAnalysis'
+      displayName: "Sonaranalaysis fail or pass"
 
+    - script: | 
+        mvn versions:set -DnewVersion=Dev-2.0.$(Build.BuildId)
+        mvn clean package deploy
+      displayName: 'Maven build and push to nexus'
+      
     - task: Docker@2
       displayName: Build and push an image to container registry
       inputs:
