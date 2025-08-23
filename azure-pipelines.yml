@@ -17,7 +17,8 @@ variables:
   subscription-id : '5d8acfa7-16cd-4143-80a5-18125a834acb'
   rg-name: 'testing-eg'
   aks-cluster-name : 'k8sdemocluster'
-  group: acr-secrets 
+  group: acr-secrets
+  System.debug: true
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
