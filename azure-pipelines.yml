@@ -9,7 +9,7 @@ resources:
 - repo: self
 
 variables:
-  dockerRegistryServiceConnection: '1526279c-203c-478e-8c23-ec958f89ea49'
+  dockerRegistryServiceConnection: 'ACR-serviceconnection'
   imageRepository: 'ksdemoboardgame'
   containerRegistry: 'k8sdemo123.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
