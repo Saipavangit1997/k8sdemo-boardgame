@@ -50,9 +50,6 @@ stages:
         sonar.projectName=BoardGame
         sonar.sourceEncoding=UTF-8
         sonar.exclusions=**/*.bin
-    - task: SonarQubePublish@7
-      inputs:
-        pollingTimeoutSec: '300'
     - task: Maven@4
       inputs:
          azureSubscription: 'azureserviceconnection'
@@ -65,6 +62,9 @@ stages:
          effectivePomSkip: false
          sonarQubeRunAnalysis: true
          sqMavenPluginVersionChoice: 'latest'
+    - task: SonarQubePublish@7
+      inputs:
+        pollingTimeoutSec: '300'
     - task: sonar-buildbreaker@8
       inputs:
        SonarQube: 'sonarqube-serviceconnection'
