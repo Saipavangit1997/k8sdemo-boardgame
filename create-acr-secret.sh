@@ -11,4 +11,6 @@ echo "DOCKER_EMAIL=$DOCKER_EMAIL"
 # Create new secret
 kubectl create secret docker-registry acr-secret --docker-server="$DOCKER_SERVER" --docker-username="$DOCKER_USERNAME" --docker-password="$DOCKER_PASSWORD" --docker-email="$DOCKER_EMAIL" -n default
 
-kubectl get secret acr-secret -n default
+kubectl get secrets -n default
+
+kubectl describe secret acr-secret
