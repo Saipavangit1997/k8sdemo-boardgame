@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: boardgame
-          image: k8sdemo123.azurecr.io/k8sdemoboardgame:$(tag) # <-- update if using ECR
+          image: k8sdemo123.azurecr.io/k8sdemoboardgame:$(image_tag) # <-- update if using ECR
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
