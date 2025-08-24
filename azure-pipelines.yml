@@ -39,6 +39,7 @@ stages:
           export PATH=$JAVA_HOME/bin:$PATH
           java -version
       displayName: "Use JDK 21"
+
     - task: SonarQubePrepare@7
       inputs:
        SonarQube: 'sonarqube-serviceconnection'
@@ -49,6 +50,8 @@ stages:
         sonar.projectName=BoardGame
         sonar.sourceEncoding=UTF-8
         sonar.exclusions=**/*.bin
+    
+
     - task: Maven@4
       inputs:
          azureSubscription: 'azureserviceconnection'
@@ -63,13 +66,19 @@ stages:
          effectivePomSkip: false
          sonarQubeRunAnalysis: true
          sqMavenPluginVersionChoice: 'latest'
+      
+    - task: SonarQubeAnalyze@7
+      displayName: "Run SonarQubeAnalyze"
+
     - task: SonarQubePublish@7
       inputs:
         pollingTimeoutSec: '300'
+
     - task: sonar-buildbreaker@8
       inputs:
        SonarQube: 'sonarqube-serviceconnection'
       displayName: "Sonaranalaysis fail or pass"
+
 
     - script: ls -al && pwd && rm -rf $(Build.SourcesDirectory)/.m2/settings.xml
       displayName: 'List Files & Current Working Directory'
