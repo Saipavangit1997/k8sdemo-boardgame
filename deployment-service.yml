@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: boardgame
-          image: "k8sdemo123.azurecr.io/k8sdemoboardgame:$image_tag"
+          image: k8sdemo123.azurecr.io/k8sdemoboardgame
           imagePullPolicy: Always
           ports:
             - containerPort: 8080

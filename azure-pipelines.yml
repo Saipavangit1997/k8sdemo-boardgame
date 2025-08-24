@@ -143,13 +143,13 @@ stages:
         DOCKER_PASSWORD: "$(DOCKER_PASSWORD)"
         DOCKER_EMAIL: "$(DOCKER_EMAIL)"
 
-    - task: Bash@3
-      displayName: "Replace tag in deployment YAML"
-      inputs:
-        targetType: 'inline'
-        script: |
-          echo "Replacing tag in deployment YAML with $(Build.BuildId)"
-          sed -i "s|\$image_tag|${tag}|g" deployment-service.yml
+   # - task: Bash@3
+    #  displayName: "Replace tag in deployment YAML"
+     # inputs:
+      #  targetType: 'inline'
+       # script: |
+        #  echo "Replacing tag in deployment YAML with $(Build.BuildId)"
+         # sed -i "s|\$image_tag|${tag}|g" deployment-service.yml
 
     - task: KubernetesManifest@1
       inputs:
@@ -161,3 +161,5 @@ stages:
         useClusterAdmin: true
         manifests: 'deployment-service.yml'
         imagePullSecrets: 'acr-secret'
+        containers: |
+          k8sdemo123.azurecr.io/k8sdemoboardgame:$(tag)
