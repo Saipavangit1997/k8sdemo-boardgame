@@ -14,11 +14,11 @@ spec:
     spec:
       containers:
         - name: boardgame
-          image: k8sdemo123.azurecr.io/k8sdemoboardgame:$(image_tag) # <-- update if using ECR
+          image: "k8sdemo123.azurecr.io/k8sdemoboardgame:$image_tag"
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
-      imagePullSecrets:                     # <-- moved to the pod spec
+      imagePullSecrets:                    
         - name: acr-secret
 ---
 apiVersion: v1
