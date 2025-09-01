@@ -1,0 +1,25 @@
+# Prometheus
+namespaceOverride: prom
+prometheus:
+  service:
+    type: LoadBalancer
+
+# Grafana
+grafana:
+  namespaceOverride: prom
+  service:
+    type: LoadBalancer
+
+
+# Kube-state-metrics
+kube-state-metrics:
+  namespaceOverride: prom
+
+# Node-Exporter
+prometheus-node-exporter:
+  namespaceOverride: prom
+
+  alertmanagerSpec:
+    alertmanagerConfigNamespaceSelector:
+      matchLabels:
+        resource: prometheus
