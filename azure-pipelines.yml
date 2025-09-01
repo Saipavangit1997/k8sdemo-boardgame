@@ -14,7 +14,7 @@ variables:
   containerRegistry: 'k8sdemo123.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   tag: '$(Build.BuildId)'
-  subscription-id : 'subscription-id'
+  subscription-id : $subscription-id
   rg-name: 'testing-eg'
   aks-cluster-name : 'k8sdemocluster'
   group: acr-creds
