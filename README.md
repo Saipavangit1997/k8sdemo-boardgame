@@ -51,3 +51,16 @@ This web application displays lists of board games and their reviews. While anyo
   - username: bugs    |     password: bunny (user role)
   - username: daffy   |     password: duck  (manager role)
 5. You can also sign-up as a new user and customize your role to play with the application! 😊
+
+
+## Monitoring Setup
+
+1. Install Helm in ubuntu server.
+2. Add the below helm repo
+   helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+3. helm repo update
+4. kubectl create ns prom
+4. helm install prometheus prometheus-community/kube-prometheus-stack -n prom -f prometheus-values.yaml 
+5. Now, Access the Garfana and prometheus using public ips of Azure load balancer.
+6. Configure the prometheus in Grafana as datasource and create a Dashboard to view the metrics.
+
