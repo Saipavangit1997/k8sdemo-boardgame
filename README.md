@@ -81,7 +81,7 @@ This web application displays lists of board games and their reviews. While anyo
 
 ## Technology Used:
 
-1. Cloud: Azure <br>
+1. *Cloud: Azure <br>
 2. Repo : Azure Repo <br>
 3. Container Orchestration Tool: Azure Kubernetes Service (AKS) <br>
 4. CI/CD : Azure Pipelines <br>
