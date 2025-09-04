@@ -42,16 +42,6 @@ This web application displays lists of board games and their reviews. While anyo
 - Schema.sql file to customize the schema and input initial data
 - Thymeleaf Fragments to reduce redundancy of repeating HTML elements (head, footer, navigation)
 
-## How to Run
-
-1. Clone the repository
-2. Open the project in your IDE of choice
-3. Run the application
-4. To use initial user data, use the following credentials.
-  - username: bugs    |     password: bunny (user role)
-  - username: daffy   |     password: duck  (manager role)
-5. You can also sign-up as a new user and customize your role to play with the application! 😊
-
 ## Project Setup:
 
 1. Create a Azure Kubernetes cluster in azure portal and create a separate server for Sonarqube and Nexus in the same vnet of AKS.
@@ -88,4 +78,20 @@ This web application displays lists of board games and their reviews. While anyo
 4. `helm install prometheus prometheus-community/kube-prometheus-stack -n prom -f prometheus-values.yaml` 
 5. Now, Access the Garfana and prometheus using public ips of Azure load balancer.
 6. Configure the prometheus in Grafana as datasource and create a Dashboard to view the metrics.
+
+## Technology Used:
+
+1. Cloud: Azure <br>
+2. Repo : Azure Repo <br>
+3. Container Orchestration Tool: Azure Kubernetes Service (AKS) <br>
+4. CI/CD : Azure Pipelines <br>
+5. Container Registry : ACR(Azure Container Registry) <br>
+6. Code Analysis: SonarQube <br>
+7. Artifact Store : Nexus <br> 
+8. Monitoring & Visualization : Prometheus and Grafana <br>
+9. Cloud Services: Azure VM, Vnet, Azure Load Balancer(standard) 
+
+
+
+
 
