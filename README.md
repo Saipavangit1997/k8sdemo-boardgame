@@ -81,15 +81,15 @@ This web application displays lists of board games and their reviews. While anyo
 
 ## Technology Used:
 
-1. *Cloud: Azure <br>
-2. Repo : Azure Repo <br>
-3. Container Orchestration Tool: Azure Kubernetes Service (AKS) <br>
-4. CI/CD : Azure Pipelines <br>
-5. Container Registry : ACR(Azure Container Registry) <br>
-6. Code Analysis: SonarQube <br>
-7. Artifact Store : Nexus <br> 
-8. Monitoring & Visualization : Prometheus and Grafana <br>
-9. Cloud Services: Azure VM, Vnet, Azure Load Balancer(standard) 
+1. **Cloud**: Azure <br>
+2. **Repo** : Azure Repo <br>
+3. **Container Orchestration Tool**: Azure Kubernetes Service (AKS) <br>
+4. **CI/CD** : Azure Pipelines <br>
+5. **Container Registry** : ACR(Azure Container Registry) <br>
+6. **Code Analysis** : SonarQube <br>
+7. **Artifact Store** : Nexus <br> 
+8. **Monitoring & Visualization** : Prometheus and Grafana <br>
+9. **Cloud Services** : Azure VM, Vnet, Azure Load Balancer(standard) 
 
 
 
