@@ -64,7 +64,7 @@ This web application displays lists of board games and their reviews. While anyo
     2. Use below commands to connect azure AKS from server <br>
        - `az account set --subscription SUBSCRIPTION-ID` <br>
        - `az aks get-credentials --resource-group RG_NAME --name CLUSTER_NAME` <br>
-    3. Use kubectl commands to testing. <br>
+    3. Use kubectl commands for testing. <br>
        - `kubectl get nodes` <BR> 
 3. Commands to install sonarqube and Nexus <br>
     1. SonarQube: <br>
