@@ -63,8 +63,8 @@ This web application displays lists of board games and their reviews. While anyo
         - az account set --subscription SUBSCRIPTION-ID <br>
         - az aks get-credentials --resource-group RG_NAME --name CLUSTER_NAME <br>
     iii. Use kubectl commands to testing. <br>
-         - kubectl get nodes  
-3.Commands to install sonarqube and Nexus <br>
+         - kubectl get nodes <BR> 
+3. Commands to install sonarqube and Nexus <br>
    SonarQube: <br>
     - docker volume create sonarqube_data <br>
     - docker run -d --name sonarqube-custom -p 9000:9000 -v sonarqube_data:/opt/sonarqube/data sonarqube:community <br>
