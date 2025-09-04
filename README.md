@@ -56,22 +56,22 @@ This web application displays lists of board games and their reviews. While anyo
 
 1. Create a Azure Kubernetes cluster in azure portal and create a separate server for Sonarqube and Nexus in the same vnet of AKS.
 2. Login to the AKS from the server with below commands. <br>
-     ssh -i ssh_keypair.pem azureuser@123.456.789.101 <br>
+     - ssh -i ssh_keypair.pem azureuser@123.456.789.101 <br>
     i.Install Azure cli <br>
-       az login --tenant <tenant-id> <br>
+       - az login --tenant TENANT_ID <br>
     ii. Use below commands to connect azure AKS from server <br>
-        az account set --subscription <subscription-id> <br>
-        az aks get-credentials --resource-group <rg-name> --name <cluster-name> <br>
+        - az account set --subscription SUBSCRIPTION-ID <br>
+        - az aks get-credentials --resource-group RG_NAME --name CLUSTER_NAME <br>
     iii. Use kubectl commands to testing. <br>
-         kubectl get nodes <br>   
+         - kubectl get nodes <br>   
 3.Commands to install sonarqube and Nexus <br>
    SonarQube: <br>
-     docker volume create sonarqube_data <br>
-     docker run -d --name sonarqube-custom -p 9000:9000 -v sonarqube_data:/opt/sonarqube/data sonarqube:community <br>
+    - docker volume create sonarqube_data <br>
+    - docker run -d --name sonarqube-custom -p 9000:9000 -v sonarqube_data:/opt/sonarqube/data sonarqube:community <br>
    Nexus: <br>
-    docker volume create nexus-data <br>
-    docker run -d -p 8081:8081 --name nexus -v nexus-data:/nexus-data sonatype/nexus3 <br> 
-    cat /nexus-data/admin.password  --> For nexus password <br>
+    - docker volume create nexus-data <br>
+    - docker run -d -p 8081:8081 --name nexus -v nexus-data:/nexus-data sonatype/nexus3 <br> 
+    - cat /nexus-data/admin.password  --> For nexus password <br>
 4. Now add the Nexus dependencies in pom.xml and settings.xml for Nexus authentication.
 5. Prepare a Azure pipeline yaml
 6. Run the pipeline.
@@ -80,7 +80,7 @@ This web application displays lists of board games and their reviews. While anyo
 
 1. Install Helm in ubuntu server.
 2. Add the below helm repo <br>
-   helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+   - helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 3. helm repo update
 4. kubectl create ns prom
 4. helm install prometheus prometheus-community/kube-prometheus-stack -n prom -f prometheus-values.yaml 
