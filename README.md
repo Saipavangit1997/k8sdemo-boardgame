@@ -57,7 +57,7 @@ This web application displays lists of board games and their reviews. While anyo
 1. Create a Azure Kubernetes cluster in azure portal and create a separate server for Sonarqube and Nexus in the same vnet of AKS.
 2. Login to the AKS from the server with below commands. <br>
     ```bash
-    ssh -i ssh_keypair.pem azureuser@123.456.789.101 <br>
+    ssh -i ssh_keypair.pem azureuser@123.456.789.101
     ```
     1. Install Azure cli <br>
        - `az login --tenant TENANT_ID` <br>
