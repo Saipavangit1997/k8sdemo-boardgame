@@ -68,7 +68,7 @@ This web application displays lists of board games and their reviews. While anyo
     SonarQube: <br>
     - docker volume create sonarqube_data <br>
     - docker run -d --name sonarqube-custom -p 9000:9000 -v sonarqube_data:/opt/sonarqube/data sonarqube:community <br>
-    Nexus: <br>
+   Nexus: <br>
     - docker volume create nexus-data <br>
     - docker run -d -p 8081:8081 --name nexus -v nexus-data:/nexus-data sonatype/nexus3 <br> 
     - cat /nexus-data/admin.password  --> For nexus password <br>
