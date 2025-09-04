@@ -65,10 +65,10 @@ This web application displays lists of board games and their reviews. While anyo
     iii. Use kubectl commands to testing. <br>
          - kubectl get nodes <BR> 
 3. Commands to install sonarqube and Nexus <br>
-   SonarQube: <br>
+    SonarQube: <br>
     - docker volume create sonarqube_data <br>
     - docker run -d --name sonarqube-custom -p 9000:9000 -v sonarqube_data:/opt/sonarqube/data sonarqube:community <br>
-   Nexus: <br>
+    Nexus: <br>
     - docker volume create nexus-data <br>
     - docker run -d -p 8081:8081 --name nexus -v nexus-data:/nexus-data sonatype/nexus3 <br> 
     - cat /nexus-data/admin.password  --> For nexus password <br>
