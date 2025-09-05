@@ -89,7 +89,8 @@ This web application displays lists of board games and their reviews. While anyo
 6. **Code Analysis** : SonarQube <br>
 7. **Artifact Store** : Nexus <br> 
 8. **Monitoring & Visualization** : Prometheus and Grafana <br>
-9. **Cloud Services** : Azure VM, Vnet, Azure Load Balancer(standard) 
+9. **Cloud Services** : Azure VM, Vnet, Azure Load Balancer(standard)
+10. **Variable store** : Azure Variable group and Secure file for settings.xml
 
 
 
